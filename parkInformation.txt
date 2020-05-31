@@ -1,0 +1,29 @@
+ _______________________________________________________________________
+|                                                                       |
+|                   o   J U R A S S I C   P A R K   o                   |
+|_______________________________________________________________________|
+|                                                                       |
+| --------------------------------------------------------------------  |
+||Name    | Gender | Era        | Category    | Kind          | Food  | |
+| --------------------------------------------------------------------  |
+||Dinko   | Male   | triassic   | carnivorous | chindesaurus  | meat  | |
+||Rex     | Male   | triassic   | carnivorous | coelophysis   | meat  | |
+||Nino    | Male   | triassic   | carnivorous | herrerasaurus | meat  | |
+||Deina   | Female | cretaceous | herbivorous | achelousaurus | grass | |
+||Lena    | Female | cretaceous | herbivorous | amargasaurus  | grass | |
+||Tyranno | Male   | cretaceous | herbivorous | cedarpelta    | grass | |
+||Alla    | Female | jurassik   | aquatic     | pleisosaurus  | fish  | | 
+||Mega    | Female | jurassik   | aquatic     | scelidosaurus | fish  | |
+||Elasmo  | Male   | jurassik   | aquatic     | mozasaurus    | fish  | |
+| --------------------------------------------------------------------  | 
+|                                                                       | 
+| Cage 1 /small cage /: Dinko                                           |
+| Cage 2 /medium cage/: Rex, Nino                                       |
+| Cage 3 /medium cage/: Deina, Tyranno, Lena                            |
+| Cage 4 / big cage  /: Alla, Mega, Elasmo                              |
+|                                                                       |
+| Empty cages:                                                          |
+| 2 small cages                                                         |
+| 1 medium cage                                                         |
+| 1 big cage                                                            |
+|_______________________________________________________________________|

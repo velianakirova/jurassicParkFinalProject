@@ -24,7 +24,6 @@ public:
 
 	virtual void setClimate(const char*) = 0;
 
-
 	virtual void saveCage(ostream& out) = 0;
 	virtual void saveDinosaurs(ostream& out) = 0;
 
@@ -34,8 +33,7 @@ public:
 
 	static void removeDinosaur(const vector<Cage*>, const char*);
 	virtual ~Cage();
-private:
-	char* label[15];
+
 };
 
 

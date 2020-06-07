@@ -17,15 +17,12 @@ Cage* CageFactory::make(const char* type) {
 	Cage* newCage = nullptr;
 	if (isEqualto(type, "small")) {
 		newCage = new SmallCage("");
-		cout << "Successfully added.\n";
 	}
 	else if (isEqualto(type, "medium")) {
 		newCage = new MediumCage("");
-		cout << "Successfully added.\n";
 	}
 	else if (isEqualto(type, "large")) {
 		newCage = new LargeCage("");
-		cout << "Successfully added.\n";
 	}
 	else {
 		throw UnknownCageType(type);

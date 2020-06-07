@@ -4,23 +4,12 @@
 using namespace std;
 
 class Dinosaur {
-private:
-	char* name;
-	char* gender;
-	char* era;
-	char* category;
-	char* kind;
-	char* food;
-	void copy(const Dinosaur&);
 public:
 	Dinosaur();
 	Dinosaur(const char*, const char*, const char*, const char*, const char*, const char*);
 	Dinosaur(const Dinosaur& other);
 	Dinosaur& operator= (const Dinosaur& other);
 	~Dinosaur();
-
-	void erase();
-
 
 
 	char* getName() const;
@@ -35,9 +24,18 @@ public:
 	void setKind(const char* Kind);
 	void setFood(const char* Food);
 
-
 	void saveDinosaur(ostream&);
 
 	void printInfo() const;
 
+private:
+	char* name;
+	char* gender;
+	char* era;
+	char* category;
+	char* kind;
+	char* food;
+	void copy(const Dinosaur&);
+	void erase();
 };
+

@@ -22,7 +22,7 @@ void Warehouse::storeFood(const char* food) {
 	else if (isEqual(food, "meat")) {
 		this->meat++;
 	}
-	else cout << "Unknown type of food";
+	else cout << "Unknown type of food. There is a chance that the dinosaur will be left without food.\n";
 
 }
 

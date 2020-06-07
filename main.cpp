@@ -24,6 +24,18 @@ bool isEquall(const char* strOne, const char* strTwo) {
 	return true;
 }
 
+bool ifDinosaurExist(const vector<Cage*> cagesN, const char* name) {
+	for (int i = 0; i < cagesN.size(); i++) {
+		for (int j = 0; j < cagesN[i]->getCount(); j++) {
+			if (isEquall(cagesN[i]->getDinosaurFromIndex(j).getName(), name)) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
 void loadParkInformation(const char* file) {
 	ifstream info;
 	info.open(file, ios::in);
@@ -45,15 +57,15 @@ int main() {
 	out.open("parkInformationAfterChanges.txt", ios::out);
 
 
-
+	//СЃСЉР·РґР°РІР°РјРµ РґРёРЅРѕР·Р°РІСЂРё Рё РїСЂРµРґРІР°СЂРёС‚РµР»РЅРѕ РіРё СЂР°Р·РїСЂРµРґРµР»СЏРјРµ РїРѕ РєР»РµС‚РєРё
 	cages.clear();
 	Dinosaur dinko("Dinko", "Male", "triassic", "carnivorous", "chindesaurus", "meat"), deina("Deina", "Female", "cretaceous", "herbivorous", "achelousaurus", "grass"), alla("Alla", "Female", "jurassik", "aquatic", "pleisosaurus", "fish"),
 		rex("Rex", "Male", "triassic", "carnivorous", "coelophysis", "meat"), lena("Lena", "Female", "cretaceous", "herbivorous", "amargasaurus", "grass"), mega("Mega", "Female", "jurassik", "aquatic", "scelidosaurus", "fish"),
 		nino("Nino", "Male", "triassic", "carnivorous", "herrerasaurus", "meat"), tyranno("Tyranno", "Male", "cretaceous", "herbivorous", "cedarpelta", "grass"), elasmo("Elasmo", "Male", "jurassik", "aquatic", "mozasaurus", "fish");
 
-	SmallCage smallOne("cold"), smallTwo(""), smallThree("");
-	MediumCage mediumOne("hot"), mediumTwo("cold"), mediumThree("");
-	LargeCage largeOne("nice"), largeTwo("");
+	SmallCage smallOne("cold");//, smallTwo(""), smallThree("");
+	MediumCage mediumOne("hot"), mediumTwo("cold");//, mediumThree("");
+	LargeCage largeOne("nice");//, largeTwo("");
 	smallOne.addNewDinosaur(dinko);
 	mediumOne.addNewDinosaur(rex);
 	mediumOne.addNewDinosaur(nino);
@@ -65,15 +77,15 @@ int main() {
 	largeOne.addNewDinosaur(elasmo);
 
 	cages.push_back(&smallOne);
-	cages.push_back(&smallTwo);
-	cages.push_back(&smallThree);
+	//cages.push_back(&smallTwo);
+	//cages.push_back(&smallThree);
 	cages.push_back(&mediumOne);
 	cages.push_back(&mediumTwo);
-	cages.push_back(&mediumThree);
+	//cages.push_back(&mediumThree);
 	cages.push_back(&largeOne);
-	cages.push_back(&largeTwo);
+	//cages.push_back(&largeTwo);
 
-	//запазваме по 1 тон храна и назначаваме по 3-ма работници за всеки динозавър
+	//Р·Р°РїР°Р·РІР°РјРµ РїРѕ 1 С‚РѕРЅ С…СЂР°РЅР° Рё РЅР°Р·РЅР°С‡Р°РІР°РјРµ РїРѕ 3-РјР° СЂР°Р±РѕС‚РЅРёС†Рё Р·Р° РІСЃРµРєРё РґРёРЅРѕР·Р°РІСЉСЂ
 	for (int i = 0; i < cages.size(); i++) {
 		int len = cages[i]->getCount();
 		for (int j = 0; j < len; j++) {
@@ -122,29 +134,27 @@ int main() {
 
 			warehouse.storeFood(newDinosaur.getFood());
 			personnel.addNewWorkers();
-			newDinosaur.printInfo();
 
-			//проверяваме дали в парка има свободна/подходяща клетка за новия динозавър
+			//РїСЂРѕРІРµСЂСЏРІР°РјРµ РґР°Р»Рё РІ РїР°СЂРєР° РёРјР° СЃРІРѕР±РѕРґРЅР°/РїРѕРґС…РѕРґСЏС‰Р° РєР»РµС‚РєР° Р·Р° РЅРѕРІРёСЏ РґРёРЅРѕР·Р°РІСЉСЂ
 			bool added = false;
 			for (int i = 0; i < cages.size(); i++) {
 				if (cages[i]->freeSpace()) {
 					if (cages[i]->getCategory() == nullptr && cages[i]->getEra() == nullptr || isEquall(cages[i]->getCategory(), newDinosaur.getCategory()) && isEquall(cages[i]->getEra(), newDinosaur.getEra())) {
 						cages[i]->addNewDinosaur(newDinosaur);
-						cout << "Added";
-						cages[i]->printInfo();
+						cout << "Dinosaur "<< newDinosaur.getName() <<" has been successfully added.\n";
 						added = true;
 						break;
 					}
 				}
 			}
 
-			//ако няма място в подходяща клетка за новия динозавър, то ще му построим нова и ще го добавим в нея
+			//Р°РєРѕ РЅСЏРјР° РјСЏСЃС‚Рѕ РІ РїРѕРґС…РѕРґСЏС‰Р° РєР»РµС‚РєР° Р·Р° РЅРѕРІРёСЏ РґРёРЅРѕР·Р°РІСЉСЂ, С‚Рѕ С‰Рµ РјСѓ РїРѕСЃС‚СЂРѕРёРј РЅРѕРІР° Рё С‰Рµ РіРѕ РґРѕР±Р°РІРёРј РІ РЅРµСЏ
 			if (added == false) {
 				cout << "We do not have a proper cage for your dinosaur. Do you want to build a new cage?(Y/N)";
 				char yesOrNo;
 				cin >> yesOrNo;
 				if (yesOrNo == 'Y' || yesOrNo == 'y') {
-					cout << "What type of cage do you want to build?\n-small \n-medium \n-large\n";
+					cout << "What type of cage do you want to build?\n -small \n -medium \n -large\n";
 					cout << "\n >> ";
 					cin.ignore();
 					cin.getline(choiceOne, 15);
@@ -155,8 +165,7 @@ int main() {
 						cages.push_back(CageFactory::make(choiceOne));
 						cages[cages.size() - 1]->addNewDinosaur(newDinosaur);
 						cages[cages.size() - 1]->setClimate(climateChoice);
-						cout << "\nBuilded\n";
-						cages[cages.size() - 1]->printInfo();
+						cout << "\nThe cage has been successfully builded.\n";
 					}
 					catch (const UnknownCageType& choiceThree) {
 						cerr << choiceThree.what() << std::endl;
@@ -178,24 +187,27 @@ int main() {
 			char choiceTwo[10];
 			cin.ignore();
 			cin.getline(choiceTwo, 10);
-			Cage::removeDinosaur(cages, choiceTwo);
-			personnel.removeWorkers();
-
-			for (int i = 0; i < cages.size(); i++) {
-				cages[i]->printInfo();
+			
+			
+			if (ifDinosaurExist(cages, choiceTwo)) {
+				cout << "\nDinosaur " << choiceTwo << " has been successfully removed.\n";
+				Cage::removeDinosaur(cages, choiceTwo);
+				personnel.removeWorkers();
 			}
+			else cout << "Dinosaur with that name was not found.\n";
 
 			cout << "\nYour next choice: ";
 			cin >> choice;
 		}
 		else if (choice == 3) {
-			cout << "What type of cage do you want to build?\n-small \n-medium \n-large\n";
+			cout << "What type of cage do you want to build?\n -small \n -medium \n -large\n";
 			cout << "\n >> ";
 			char choiceThree[10];
 			cin.ignore();
 			cin.getline(choiceThree, 10);
 			try {
 				cages.push_back(CageFactory::make(choiceThree));
+				cout << "\nThe cage has been successfully builded.\n";
 			}
 			catch (const UnknownCageType& choiceThree) {
 				cerr << choiceThree.what() << std::endl;
@@ -223,12 +235,12 @@ int main() {
 	out << "Name  |   Gender   |   Era   |   Category    |   Kind    |   Food   |" << endl;
 	out << "--------------------------------------------------------------------" << endl;
 
-	//запазваме промените на данните за наличните в парка динозаври
+	//Р·Р°РїР°Р·РІР°РјРµ РїСЂРѕРјРµРЅРёС‚Рµ РЅР° РґР°РЅРЅРёС‚Рµ Р·Р° РЅР°Р»РёС‡РЅРёС‚Рµ РІ РїР°СЂРєР° РґРёРЅРѕР·Р°РІСЂРё
 	for (int i = 0; i < cages.size(); i++) {
 		cages[i]->saveDinosaurs(out);
 	}
 
-	//запазваме инф. за непразните клетки след промените
+	//Р·Р°РїР°Р·РІР°РјРµ РёРЅС„. Р·Р° РЅРµРїСЂР°Р·РЅРёС‚Рµ РєР»РµС‚РєРё СЃР»РµРґ РїСЂРѕРјРµРЅРёС‚Рµ
 	for (int i = 0; i < cages.size(); i++) {
 		if (!cages[i]->isEmpty()) {
         out << "Cage " << i + 1;
@@ -238,7 +250,7 @@ int main() {
 	}
 
 
-	//запазваме инф. за празните клетки след промените
+	//Р·Р°РїР°Р·РІР°РјРµ РёРЅС„. Р·Р° РїСЂР°Р·РЅРёС‚Рµ РєР»РµС‚РєРё СЃР»РµРґ РїСЂРѕРјРµРЅРёС‚Рµ
 	int smallEmptyCages = 0;
 	int mediumEmptyCages = 0;
 	int largeEmptyCages = 0;
@@ -252,7 +264,7 @@ int main() {
 
 	out << "Empty cages: \n" << "Small cages: " << smallEmptyCages << "\nMedium cages: " << mediumEmptyCages << "\nLarge cages: " << largeEmptyCages;
 	
-	cout << "You changes have been saved in a file 'parkInformationAfterChanges.txt'. ";
-
+	cout << "\nYour changes have been saved in file 'parkInformationAfterChanges.txt'.\nHope you had fun. \n";
+	cout << "--------------------------------------------------------------------------\n";
 	return 0;
 }
